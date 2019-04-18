@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  # telegraf:
+    # image: glinton/scratch
+    # volumes:
+    #   - ./telegraf.conf:/telegraf.conf
+    #   - ../../../../telegraf:/telegraf
+    #   - ./test.log:/var/log/test.log
+    # entrypoint:
+    #   - /telegraf
+    #   - --config
+    #   - /telegraf.conf
+  telegraf:
+    image: telegraf
+    privileged: true
+    volumes:
+      - $PWD/telegraf.conf:/etc/telegraf/telegraf.conf
+      - $PWD/tmp:/tmp
+    ports:
+      - 8125:8125/udp
+      - 9273:9273
+
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    privileged: true
+    volumes:
+      - $PWD:/etc/prometheus
+      - prometheus:/prometheus
+    ports:
+      - 9090:9090
+
+volumes:
+  prometheus:
