@@ -12,7 +12,7 @@ services:
     #   - --config
     #   - /telegraf.conf
   telegraf:
-    image: telegraf
+    image: telegraf:2e5165d
     privileged: true
     volumes:
       - $PWD/telegraf.conf:/etc/telegraf/telegraf.conf

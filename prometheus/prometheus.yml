@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'my-monitor'
+
+scrape_configs:
+  # - job_name: 'prometheus'
+  #   scrape_interval: 5s
+  #   static_configs:
+  #     - targets: ['localhost:9090']
+
+  ## Node exporter
+
+  # - job_name: 'node_exporter dev'
+  #   scrape_interval: 5s
+  #   static_configs:
+  #     - targets: ['10.224.29.254:9100']
+  #       labels:
+  #         group: 'node_exporter'
+
+  - job_name: 'telegraf'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['telegraf:9126']
+
